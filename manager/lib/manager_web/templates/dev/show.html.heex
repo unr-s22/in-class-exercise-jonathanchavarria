@@ -1,23 +1,10 @@
-<h1>Show Dev</h1>
+<h1><%= @dev.first_name %> <%= @dev.last_name %></h1>
 
-<ul>
-
-  <li>
-    <strong>First name:</strong>
-    <%= @dev.first_name %>
-  </li>
-
-  <li>
-    <strong>Last name:</strong>
-    <%= @dev.last_name %>
-  </li>
-
-  <li>
     <strong>Email:</strong>
     <%= @dev.email %>
-  </li>
+  <br><br>
 
- <strong>Assignments:</strong>
+ <strong>Assignments:</strong><br>
   <%= for a <-@dev.assignments do %>
     <%= a.name %>
     <strong>Due:</strong>
@@ -26,9 +13,10 @@
     <%= Manager.Management.get_status!(a.status_id).name %>
     <strong>Task</strong>
     <%= Manager.Management.get_task!(a.task_id).name %>
+    <br><br>
   <% end %>
 
-</ul>
+
 
 <span><%= link "Edit", to: Routes.dev_path(@conn, :edit, @dev) %></span> |
 <span><%= link "Back", to: Routes.dev_path(@conn, :index) %></span>
