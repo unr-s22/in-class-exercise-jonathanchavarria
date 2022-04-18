@@ -12,7 +12,9 @@ defmodule ManagerWeb.AssignmentController do
   def new(conn, _params) do
     changeset = Management.change_assignment(%Assignment{})
     statuses = Management.list_statuses()
-    render(conn, "new.html", changeset: changeset, statuses: statuses)
+    devs = Management.list_devs()
+    tasks = Management.list_tasks()
+    render(conn, "new.html", changeset: changeset, statuses: statuses, devs: devs, tasks: tasks)
   end
 
   def create(conn, %{"assignment" => assignment_params}) do
@@ -32,11 +34,14 @@ defmodule ManagerWeb.AssignmentController do
     render(conn, "show.html", assignment: assignment)
   end
 
+  @spec edit(Plug.Conn.t(), map) :: Plug.Conn.t()
   def edit(conn, %{"id" => id}) do
     assignment = Management.get_assignment!(id)
     changeset = Management.change_assignment(assignment)
     statuses = Management.list_statuses()
-    render(conn, "edit.html", assignment: assignment, changeset: changeset, statuses: statuses)
+    devs = Management.list_devs()
+    tasks = Management.list_tasks()
+    render(conn, "edit.html", assignment: assignment, changeset: changeset, statuses: statuses, devs: devs, tasks: tasks)
   end
 
   def update(conn, %{"id" => id, "assignment" => assignment_params}) do

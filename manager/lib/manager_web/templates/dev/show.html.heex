@@ -17,6 +17,16 @@
     <%= @dev.email %>
   </li>
 
+ <strong>Assignments:</strong>
+  <%= for a <-@dev.assignments do %>
+    <%= a.name %>
+    <strong>Due:</strong>
+    <%= a.due_date %>
+    <strong>Status</strong>
+    <%= Manager.Management.get_status!(a.status_id).name %>
+    <strong>Task</strong>
+    <%= Manager.Management.get_task!(a.task_id).name %>
+  <% end %>
 
 </ul>
 

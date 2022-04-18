@@ -12,6 +12,17 @@
     <%= @task.description %>
   </li>
 
+  <strong>Assignments:</strong>
+  <%= for a <-@task.assignments do %>
+    <%= a.name %>
+    <strong>Due:</strong>
+    <%= a.due_date %>
+    <strong>Status</strong>
+    <%= Manager.Management.get_status!(a.status_id).name %>
+    <strong>Dev</strong>
+    <%= Manager.Management.get_dev!(a.dev_id).first_name %>  <%=Manager.Management.get_dev!(a.dev_id).last_name%>
+  <% end %>
+
 </ul>
 
 <span><%= link "Edit", to: Routes.task_path(@conn, :edit, @task) %></span> |

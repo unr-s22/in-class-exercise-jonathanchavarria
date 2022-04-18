@@ -113,7 +113,7 @@ defmodule Manager.Management do
 
   """
   def list_devs do
-    Repo.all(Dev)
+    Repo.all(Dev) |> Repo.preload(:assignments)
   end
 
   @doc """
@@ -130,7 +130,7 @@ defmodule Manager.Management do
       ** (Ecto.NoResultsError)
 
   """
-  def get_dev!(id), do: Repo.get!(Dev, id)
+  def get_dev!(id), do: Repo.get!(Dev, id) |> Repo.preload(:assignments)
 
   @doc """
   Creates a dev.
@@ -209,7 +209,7 @@ defmodule Manager.Management do
 
   """
   def list_tasks do
-    Repo.all(Task)
+    Repo.all(Task) |> Repo.preload(:assignments)
   end
 
   @doc """
@@ -226,7 +226,7 @@ defmodule Manager.Management do
       ** (Ecto.NoResultsError)
 
   """
-  def get_task!(id), do: Repo.get!(Task, id)
+  def get_task!(id), do: Repo.get!(Task, id) |> Repo.preload(:assignments)
 
   @doc """
   Creates a task.
@@ -484,4 +484,5 @@ defmodule Manager.Management do
   def change_status(%Status{} = status, attrs \\ %{}) do
     Status.changeset(status, attrs)
   end
+
 end

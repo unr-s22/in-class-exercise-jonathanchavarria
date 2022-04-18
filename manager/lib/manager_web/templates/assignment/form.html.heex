@@ -16,6 +16,15 @@
   <p>
     Status: <%= select f, :status_id, Enum.map(@statuses,&{&1.name, &1.id}) %>
   </p>
+
+    <p>
+    Developer Assigned <%= select f, :dev_id, Enum.map(@devs,&{&1.last_name, &1.id}) %>
+  </p>
+
+      <p>
+      To This Task: <%= select f, :task_id, Enum.map(@tasks,&{&1.name, &1.id}) %>
+    </p>
+
   <div>
     <%= submit "Save" %>
   </div>
