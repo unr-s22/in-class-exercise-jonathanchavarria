@@ -16,6 +16,15 @@
     <br><br>
   <% end %>
 
+ <strong>zipcode</strong>
+ <%=@dev.zipcode%>
+ <strong>state</strong>
+  <%= @dev.citystate["state"] %>
+  <strong>city</strong>
+  <%= @dev.citystate["city"] %>
+
+
+
 
 
 <span><%= link "Edit", to: Routes.dev_path(@conn, :edit, @dev) %></span> |

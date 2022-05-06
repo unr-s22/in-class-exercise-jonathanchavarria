@@ -28,8 +28,8 @@ defmodule ManagerWeb.DevController do
   end
 
   def show(conn, %{"id" => id}) do
-    dev = Management.get_dev!(id)
-    render(conn, "show.html", dev: dev)
+    dev = Management.get_dev_with_citystate(id)
+    render(conn, :show, dev: dev)
   end
 
   def edit(conn, %{"id" => id}) do

@@ -132,9 +132,16 @@ defmodule Manager.Management do
   """
   def get_dev!(id), do: Repo.get!(Dev, id) |> Repo.preload(:assignments)
 
+  def get_dev_with_citystate(id) do
+    dev = Repo.get!(Dev, id) |> Repo.preload(:assignments)
+    citystate = Manager.Management.Dev.get_by_zipcode(dev)
+    Map.put(dev, :citystate, citystate)
+
+  end
+
   @doc """
   Creates a dev.
-
+S
   ## Examples
 
       iex> create_dev(%{field: value})
